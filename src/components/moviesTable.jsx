@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TableHeader from './common/tableHeader';
 import Like from './common/like';
+import TableBody from './common/tableBody';
 
 class MoviesTable extends Component {
     columns = [
@@ -16,7 +17,8 @@ class MoviesTable extends Component {
         return (
             <table className="table">
                 <TableHeader columns={this.columns} sortColumn={sortColumn} onSort={onSort} />
-                <tbody>
+                <TableBody data={movies} columns={this.columns} />
+                {/* <tbody>
                     {movies.map(movie => (
                         <tr key={movie._id}>
                             <td>{movie.title}</td>
@@ -37,7 +39,7 @@ class MoviesTable extends Component {
                             </td>
                         </tr>
                     ))}
-                </tbody>
+                </tbody> */}
             </table>
         );
     }
