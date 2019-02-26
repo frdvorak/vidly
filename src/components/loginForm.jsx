@@ -22,8 +22,8 @@ class LoginForm extends Component {
         e.preventDefault(); // Prevent submiting event to the server which causes full page reload
 
         const errors = this.validate();
-        console.log(errors);
-        this.setState({ errors });
+        // set errors to errors object or empty object, it can never be null
+        this.setState({ errors: errors || {} });
         if (errors) return;
 
         // Call the server
@@ -35,7 +35,7 @@ class LoginForm extends Component {
         this.setState({ account });
     };
     render() {
-        const { account } = this.state;
+        const { account, errors } = this.state;
 
         return (
             <div>
@@ -46,12 +46,14 @@ class LoginForm extends Component {
                         value={account.username}
                         label="Username"
                         onChange={this.handleChange}
+                        error={errors.username}
                     />
                     <Input
                         name="password"
                         value={account.password}
                         label="Password"
                         onChange={this.handleChange}
+                        error={errors.password}
                     />
                     <button className="btn btn-primary">Login</button>
                 </form>
