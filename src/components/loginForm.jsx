@@ -33,8 +33,10 @@ class LoginForm extends Component {
         console.log('Submitted');
     }
     validateProperty = ({ name, value }) => {
-        const obj = { [name]: value }
-        Joi.validate()
+        const obj = { [name]: value };
+        const schema = { [name]: this.schema[name] }
+        const { error } = Joi.validate(obj, schema);
+        return error ? error.details[0].message : null;
 
     }
     handleChange = ({ currentTarget: input }) => {
@@ -68,7 +70,11 @@ class LoginForm extends Component {
                         onChange={this.handleChange}
                         error={errors.password}
                     />
-                    <button className="btn btn-primary">Login</button>
+                    <button
+                        disabled={this.validate()}
+                        className="btn btn-primary"
+                    >Login
+                    </button>
                 </form>
             </div>
         );
