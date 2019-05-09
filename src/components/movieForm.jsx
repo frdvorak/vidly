@@ -73,5 +73,4 @@ class MovieForm extends Form {
     );
   }
 }
-
 export default MovieForm;
